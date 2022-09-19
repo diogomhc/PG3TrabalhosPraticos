@@ -1,0 +1,2 @@
+# PG3TrabalhosPraticos
+ Repositório de trabalhos práticos para a cadeira de Programação 3, inserida no 3º semestre da Licenciatura de Engenharia Informática, Redes e Telecomunicações do Instituto Superior de Engenharia de Lisboa.
