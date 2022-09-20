@@ -22,8 +22,7 @@ public class Query {
         /* Este método foi escrito para compara duas instâncias da mesma classe; essa comparação falha
          * quando o objeto a comparar não esteja definido, ou não possua a mesma referência nem valores
          * idênticos nos seus membros */
-        return o != null &&
-               o instanceof Query &&
+        return o instanceof Query &&
               (this == o ||
               (text.equals(((Query)o).text) &&
                correctAnswer.equals(((Query)o).correctAnswer) &&
