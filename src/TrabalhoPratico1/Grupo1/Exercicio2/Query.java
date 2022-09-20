@@ -92,7 +92,7 @@ public class Query {
             }
         }
 
-        return temp.toArray(new Query[queries.length]);
+        return (Query[])temp.toArray();
     }
 
 // Fim do Exercício 2
@@ -102,7 +102,8 @@ public class Query {
     }
 
     public boolean equals(Object o) {
-        return o instanceof Query &&
+        return o != null &&
+               o instanceof Query &&
                (this == o ||
                (text.equals(((Query)o).text) &&
                correctAnswer.equals(((Query)o).correctAnswer) &&
