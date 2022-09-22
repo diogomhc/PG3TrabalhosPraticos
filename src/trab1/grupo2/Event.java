@@ -1,6 +1,4 @@
-package TrabalhoPratico1.Grupo2;
-import TrabalhoPratico1.Grupo2.Athlete;
-import TrabalhoPratico1.Grupo2.Competition;
+package trab1.grupo2;
 
 public class Event extends Competition {
     private final String modality;

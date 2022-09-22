@@ -1,4 +1,4 @@
-package TrabalhoPratico1.Grupo2;
+package trab1.grupo2;
 
 public class AthleteTest implements Athlete {
     private final String name;

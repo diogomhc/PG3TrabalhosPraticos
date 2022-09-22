@@ -1,4 +1,4 @@
-package TrabalhoPratico1.Grupo2;
+package trab1.grupo2;
 
 public class CompetitionException extends Exception {
     public CompetitionException() {

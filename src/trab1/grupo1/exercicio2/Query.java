@@ -1,4 +1,4 @@
-package TrabalhoPratico1.Grupo1.Exercicio2;
+package trab1.grupo1.exercicio2;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package TrabalhoPratico1.Grupo1.Exercicio1;
+package trab1.grupo1.exercicio1;
 
 public class Example {
     public static void main(String[] args) {
