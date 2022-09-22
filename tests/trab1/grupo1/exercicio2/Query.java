@@ -54,7 +54,7 @@ public class Query {
     public static Query parse(String queryToParse) {
         boolean hasPoints = queryToParse.contains("[");
         String text = hasPoints ? queryToParse.substring(0, queryToParse.indexOf('[')).trim() : queryToParse.substring(0, queryToParse.indexOf('?')),
-               correctAnswer = queryToParse.substring(hasPoints ? queryToParse.indexOf("]?") + 2 : queryToParse.indexOf('?') + 1).trim();
+                correctAnswer = queryToParse.substring(hasPoints ? queryToParse.indexOf("]?") + 2 : queryToParse.indexOf('?') + 1).trim();
         int points = hasPoints ? Integer.parseInt(queryToParse.substring(queryToParse.indexOf('[') + 1, queryToParse.indexOf(']'))) : 5;
 
         return new Query(text, correctAnswer, points);
