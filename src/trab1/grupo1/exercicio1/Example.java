@@ -8,7 +8,7 @@ public class Example {
         /*Alínea 1:
          *O resultado apresentado é o seguinte:
          *
-         *  TrabalhoPratico1.Grupo1.Exercicio1.Query@7b23ec81
+         *  trab1.grupo1.exercicio1.Query@7b23ec81
          *  false
          *  false
          *  false
