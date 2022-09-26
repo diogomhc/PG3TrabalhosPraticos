@@ -40,10 +40,10 @@ public class Triathlon extends Competition {
     }
 
     public String toString() {
-        String res = "Triatlo\n";
+        StringBuilder res = new StringBuilder("Triatlo\n");
         for (Competition c: competitions) {
-            res += "\n" + c;
+            res.append("\n" + c);
         }
-        return res;
+        return res.toString();
     }
 }

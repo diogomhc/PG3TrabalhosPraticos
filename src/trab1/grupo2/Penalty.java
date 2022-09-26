@@ -1,25 +1,24 @@
 package trab1.grupo2;
 
 public class Penalty extends Competition {
-    private final Event event;
-
     private final double penalty;
+    public final Competition competition;
 
     public Penalty(Event e, double tp) {
         super(e.getTime() + tp);
-        event = e;
+        competition = e;
         penalty = tp;
     }
 
     public String getModality() {
-        return event.getModality();
+        return competition.getModality();
     }
 
     public Athlete getAthlete() {
-        return event.getAthlete();
+        return competition.getAthlete();
     }
 
     public String toString() {
-        return getModality() + ": " + getAthlete() + " - " + getTime() + " [" + event.getTime() + " + " + penalty + ']';
+        return competition.toString() + " [" + (getTime() - penalty) + " + " + penalty + ']';
     }
 }

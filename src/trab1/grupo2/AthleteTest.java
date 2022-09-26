@@ -15,6 +15,7 @@ public class AthleteTest implements Athlete {
     }
     public boolean equals(Object o){
         return o instanceof AthleteTest &&
-               getName().equals(((AthleteTest)o).getName());
+               (this == o ||
+               getName().equals(((AthleteTest)o).getName()));
     }
 }
