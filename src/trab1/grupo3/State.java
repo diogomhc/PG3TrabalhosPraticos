@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 public abstract class State implements Comparable<State> {
     private final String name;
 
-    public State(String nm) {
+    protected State(String nm) {
         name = nm;
     }
 
