@@ -4,7 +4,9 @@ import java.util.Iterator;
 
 public class Union extends State implements Composition {
 
-    private final String type;
+    private State[] states;
+
+    public final String type;
 
     public Union(String nm, String tp) {
         super(nm);
@@ -16,8 +18,11 @@ public class Union extends State implements Composition {
     }
 
     public int getArea() {
-        // Área dos estados que agrega
-        return 0;
+        int area = 0;
+        for (State s: states) {
+            area += s.getArea();
+        }
+        return area;
     }
 
     public int compareTo(State other) {

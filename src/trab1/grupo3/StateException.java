@@ -9,7 +9,11 @@ public class StateException extends Exception {
     }
 
     public StateException(State s) {
-        super(s.getDescription("").substring(0, s.getDescription("").indexOf(" - ") + 3) + "Estado inválido");
+        super(s.name + " - Estado inválido");
         state = s;
+    }
+
+    public State getState() {
+        return state;
     }
 }

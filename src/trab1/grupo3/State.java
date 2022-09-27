@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 
 public abstract class State implements Comparable<State> {
-    private final String name;
+    public final String name;
 
     protected State(String nm) {
         name = nm;
