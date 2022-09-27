@@ -1,4 +1,4 @@
-package TrabalhoPratico1.Grupo3;
+package trab1.grupo3;
 
 public class StateException extends Exception {
     private final State state;

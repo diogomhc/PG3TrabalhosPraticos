@@ -1,4 +1,4 @@
-package TrabalhoPratico1.Grupo3;
+package trab1.grupo3;
 
 public class Country extends State {
     private final int area;
