@@ -4,7 +4,7 @@ public class Triathlon extends Competition {
 
     private final String modality;
     private final Athlete athlete;
-    private final Competition[] competitions;
+    protected final Competition[] competitions;
 
     public Triathlon(Competition... c) throws CompetitionException {
         super(getCompetitionsTime(c));

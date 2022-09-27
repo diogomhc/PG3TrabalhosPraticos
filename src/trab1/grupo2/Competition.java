@@ -3,7 +3,7 @@ package trab1.grupo2;
 public abstract class Competition {
     protected final double time;
 
-    public Competition(double time) {
+    protected Competition(double time) {
         this.time = time;
     }
 
