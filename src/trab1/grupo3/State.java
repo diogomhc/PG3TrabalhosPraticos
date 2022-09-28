@@ -25,4 +25,8 @@ public abstract class State implements Comparable<State> {
     public abstract boolean isSovereign();
 
     public abstract int getArea();
+
+    public int compareTo(State other) {
+        return getArea() - other.getArea();
+    }
 }

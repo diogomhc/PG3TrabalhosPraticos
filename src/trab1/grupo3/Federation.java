@@ -9,13 +9,17 @@ public class Federation extends Union {
         return true;
     }
 
-    public Federation append(State s) {
-        // Rever conceito melhor
-        return null;
+    public Federation append(State s) throws StateException {
+        if (s.isSovereign()) throw new StateException(s.name);
+        super.append(s);
+        return this;
     }
 
     public Federation append(String stName, int area) {
         // Rever conceito melhor
+
+        // Dá erro
+        //super.append(new Country(stName, area, false));
         return null;
     }
 

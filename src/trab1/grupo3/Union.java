@@ -1,10 +1,11 @@
 package trab1.grupo3;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Union extends State implements Composition {
 
-    private State[] states;
+    private ArrayList<State> states;
 
     public final String type;
 
@@ -25,14 +26,9 @@ public class Union extends State implements Composition {
         return area;
     }
 
-    public int compareTo(State other) {
-        // Rever conceito melhor
-        return 0;
-    }
-
     public Composition append(State s) throws StateException {
-        // Rever conceito melhor
-        return null;
+        if (find( i -> i.name.equals(s.name) ).equals(s)) states.add(s);
+        return this;
     }
 
     public Iterator<State> iterator() {
