@@ -1,7 +1,6 @@
-package trab1.grupo1;
+package trab1.grupo1.exercicio2;
 
 import org.junit.jupiter.api.Test;
-import trab1.grupo1.exercicio2.Query;
 
 import static org.junit.jupiter.api.Assertions.*;
 
