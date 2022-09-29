@@ -17,7 +17,7 @@ public class Triathlon extends Competition {
         if (c.length != 3)
             throw new CompetitionException("Triatlo: Número de competições inválido");
         for (int i = 1; i < 3; i++) {
-            if (!c[i].getModality().equals(c[0].getModality()))
+            if (c[i].getModality().equals(c[0].getModality()))
                 throw new CompetitionException("Triatlo: Modalidades inválidas");
             if (!c[i].getAthlete().equals(c[0].getAthlete()))
                 throw new CompetitionException("Triatlo: Atleta inválido");
@@ -40,9 +40,9 @@ public class Triathlon extends Competition {
     }
 
     public String toString() {
-        StringBuilder res = new StringBuilder("Triatlo\n");
+        StringBuilder res = new StringBuilder(String.format("Triatlo: %s - %.2f", getAthlete(), sumTimes(competitions)));
         for (Competition c: competitions) {
-            res.append("\n" + c);
+            res.append("\n\t - " + c);
         }
         return res.toString();
     }

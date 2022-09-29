@@ -16,7 +16,7 @@ public abstract class Competition {
     public abstract Athlete getAthlete();
 
     public String toString() {
-        return getModality() + ": " + getAthlete() + " - " + getTime();
+        return String.format("%s: %s - %.2f", getModality(), getAthlete(), getTime());
     }
 
     public static double sumTimes(Competition... c) {
