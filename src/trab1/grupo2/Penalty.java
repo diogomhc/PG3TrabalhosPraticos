@@ -19,6 +19,6 @@ public class Penalty extends Competition {
     }
 
     public String toString() {
-        return String.format(super.toString() + " [%.2f + %.2f]", getTime() - penalty, penalty);
+        return String.format(super.toString() + " [%.2f + %.2f]", competition.getTime(), penalty);
     }
 }
