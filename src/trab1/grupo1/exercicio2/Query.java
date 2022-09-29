@@ -95,8 +95,8 @@ public class Query {
     }
 
     public boolean equals(Object o) {
-        return o instanceof Query &&
-               (this == o ||
+        return this == o ||
+               (o instanceof Query &&
                (text.equals(((Query)o).text) &&
                correctAnswer.equals(((Query)o).correctAnswer) &&
                points == ((Query)o).points));
