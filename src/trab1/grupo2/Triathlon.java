@@ -1,15 +1,10 @@
 package trab1.grupo2;
 
 public class Triathlon extends Competition {
-
-    private final String modality;
-    private final Athlete athlete;
     protected final Competition[] competitions;
 
     public Triathlon(Competition... c) throws CompetitionException {
         super(getCompetitionsTime(c));
-        modality = "Triatlo";
-        athlete = c[0].getAthlete();
         competitions = c;
     }
 
@@ -26,11 +21,11 @@ public class Triathlon extends Competition {
     }
 
     public String getModality() {
-        return modality;
+        return "Triatlo";
     }
 
     public Athlete getAthlete() {
-        return athlete;
+        return competitions[0].getAthlete();
     }
 
     public double[] getThreeTimes() {
