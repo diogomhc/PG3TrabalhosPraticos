@@ -32,7 +32,6 @@ public class Union extends State implements Composition {
     }
 
     public Iterator<State> iterator() {
-        // Rever conceito melhor
-        return null;
+        return states.iterator();
     }
 }
