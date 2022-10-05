@@ -5,13 +5,14 @@ import java.util.Iterator;
 
 public class Union extends State implements Composition {
 
-    private ArrayList<State> states;
+    private final ArrayList<State> states;
 
     public final String type;
 
     public Union(String nm, String tp) {
         super(nm);
         type = tp;
+        states = new ArrayList<>();
     }
 
     public boolean isSovereign() {

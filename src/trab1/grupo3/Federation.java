@@ -20,11 +20,21 @@ public class Federation extends Union {
 
         // Dá erro
         //super.append(new Country(stName, area, false));
+        try {
+            super.append(new Country(stName, area, false));
+        }
+        catch (StateException se) { }
         return null;
     }
 
     public State greaterState() {
         // Rever conceito melhor
-        return null;
+        State greater = null;
+
+        for (State s: this) {
+            greater = greater == null ? s : greater.compareTo(s) > 0 ? s : greater;
+        }
+
+        return greater;
     }
 }
