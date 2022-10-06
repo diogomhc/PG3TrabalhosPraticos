@@ -7,7 +7,7 @@ public abstract class Competition {
         this.time = time;
     }
 
-    public double getTime() {
+    public final double getTime() {
         return time;
     }
 
