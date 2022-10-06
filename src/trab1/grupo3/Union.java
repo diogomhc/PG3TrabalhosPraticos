@@ -44,7 +44,7 @@ public class Union extends State implements Composition {
 
     public Composition append(State s) throws StateException {
         State found = find( i -> i.name.equals(s.name) );
-        if (found != null && found.equals(s)) states.add(s);
+        if (found == null || !found.equals(s)) states.add(s);
         return this;
     }
 
