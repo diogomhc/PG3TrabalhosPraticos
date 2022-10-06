@@ -1,6 +1,5 @@
 package trab1.grupo1.exercicio2;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Query {
@@ -62,7 +61,7 @@ public class Query {
 
     // Alínea 7
     public static int quiz(Query... queries) {
-        int sum = 0, queryPoints = 0;
+        int sum = 0, queryPoints;
         Scanner in = new Scanner(System.in);
         for (Query q: queries) {
             System.out.println(q.getText() + '?');
@@ -76,7 +75,7 @@ public class Query {
     }
 
     public static Query[] growingQueries(Query[] queries) {
-        Query[] temp = new Query[queries.length], result = null;
+        Query[] temp = new Query[queries.length], result;
         int last = 1;
 
         temp[0] = queries[0];
