@@ -76,16 +76,19 @@ public class Query {
     }
 
     public static Query[] growingQueries(Query[] queries) {
-        ArrayList<Query> temp = new ArrayList<>();
-        for (int i = 0; i < queries.length; i++) {
-            if (i == 0) {
-                temp.add(queries[0]);
-                continue;
-            }
-            if (queries[i].compareTo(temp.get(temp.size() - 1)) >= 0) temp.add(queries[i]);
-        }
+        Query[] temp = new Query[queries.length], result = null;
+        int last = 1;
 
-        return temp.toArray(new Query[temp.size()]);
+        temp[0] = queries[0];
+
+        for (int i = 1; i < queries.length; i++)
+            if (queries[i].compareTo(temp[last - 1]) >= 0)
+                temp[last++] = queries[i];
+
+        result = new Query[last];
+        System.arraycopy(temp, 0, result, 0, last);
+
+        return result;
     }
 
 // Fim do Exercício 2
