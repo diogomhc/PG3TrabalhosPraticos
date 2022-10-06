@@ -2,7 +2,7 @@ package trab1.grupo3;
 
 public class Federation extends Union {
     public Federation(String nm) {
-        super(nm, "Federation"); // ??????
+        super(nm, "Estado federal"); // ??????
     }
 
     public boolean isSovereign() {
@@ -16,23 +16,18 @@ public class Federation extends Union {
     }
 
     public Federation append(String stName, int area) {
-        // Rever conceito melhor
-
-        // Dá erro
-        //super.append(new Country(stName, area, false));
         try {
-            super.append(new Country(stName, area, false));
+            append(new Country(stName, area, false));
         }
         catch (StateException se) { }
-        return null;
+        return this;
     }
 
     public State greaterState() {
-        // Rever conceito melhor
         State greater = null;
 
         for (State s: this) {
-            greater = greater == null ? s : greater.compareTo(s) > 0 ? s : greater;
+            greater = greater == null ? s : greater.compareTo(s) <= 0 ? s : greater;
         }
 
         return greater;

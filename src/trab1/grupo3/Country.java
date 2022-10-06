@@ -19,6 +19,6 @@ public class Country extends State {
     }
 
     public String getDescription(String prefix) {
-        return super.getDescription(prefix) + "Estado " + (isSovereign() ? "soberano" : "autónomo") + " (" + area + " km²)";
+        return super.getDescription(prefix) + "Estado " + (isSovereign() ? "soberano" : "autónomo") + " (" + getArea() + " km²)";
     }
 }

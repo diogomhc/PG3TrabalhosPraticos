@@ -2,6 +2,7 @@ package trab1.grupo3;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 public class Union extends State implements Composition {
 
@@ -27,12 +28,31 @@ public class Union extends State implements Composition {
         return area;
     }
 
+    public Iterator<State> iterator() {
+        return states.iterator();
+    }
+
+    public State find(Predicate<State> pred) {
+        if (pred.test(this)) return this;
+
+        for(State s: states)
+            if (pred.test(s))
+                return s;
+
+        return null;
+    }
+
     public Composition append(State s) throws StateException {
-        if (find( i -> i.name.equals(s.name) ).equals(s)) states.add(s);
+        State found = find( i -> i.name.equals(s.name) );
+        if (found != null && found.equals(s)) states.add(s);
         return this;
     }
 
-    public Iterator<State> iterator() {
-        return states.iterator();
+    public String getDescription(String prefix) {
+        StringBuilder res = new StringBuilder(prefix + name + " - " + type);
+        for (State s: states) {
+            res.append('\n' + prefix + s.getDescription("\t"));
+        }
+        return res.toString();
     }
 }
