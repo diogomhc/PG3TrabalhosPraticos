@@ -3,7 +3,7 @@ package trab1.grupo4;
 public abstract class Publication {
     private final String prefix, title;
 
-    public Publication(String prefix, String title) {
+    protected Publication(String prefix, String title) {
         this.prefix = prefix;
         this.title = title;
     }

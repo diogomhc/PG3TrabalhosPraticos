@@ -3,7 +3,7 @@ package trab1.grupo4;
 public abstract class Content extends Publication {
     private final int homePage, numberOfPages;
 
-    public Content(String prefix, String title, int hp, int np) {
+    protected Content(String prefix, String title, int hp, int np) {
         super(prefix, title);
         homePage = hp;
         numberOfPages = np;
