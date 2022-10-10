@@ -6,7 +6,7 @@ public abstract class Content extends Publication {
     protected Content(String prefix, String title, int hp, int np) {
         super(prefix, title);
         homePage = hp;
-        numberOfPages = np;
+        numberOfPages = hp - np + 1;
     }
 
     public final int getNumberOfPages() {
@@ -18,10 +18,10 @@ public abstract class Content extends Publication {
     }
 
     public final int getFinalPage() {
-        return getNumberOfPages() - 1;
+        return getHomePage() + getNumberOfPages() - 1;
     }
 
     public String pagesToString() {
-        return Integer.toString(getHomePage()) + (getNumberOfPages() == 1 ? '-' + Integer.toString(getFinalPage()) : '\0');
+        return getHomePage() + (getNumberOfPages() == 1 ? "" : '-' + Integer.toString(getFinalPage()));
     }
 }

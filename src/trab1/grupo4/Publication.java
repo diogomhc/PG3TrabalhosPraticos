@@ -14,11 +14,7 @@ public abstract class Publication {
         return title;
     }
 
-    public String getPrefix() {
-        return prefix;
-    }
-
     public String toString() {
-        return getPrefix() + '"' + getTitle() + '"';
+        return prefix + " \"" + getTitle() + '"';
     }
 }

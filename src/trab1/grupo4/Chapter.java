@@ -2,7 +2,17 @@ package trab1.grupo4;
 
 public class Chapter extends Content {
 
-    protected Chapter(String prefix, String title, int hp, int np) {
-        super(prefix, title, hp, np);
+    public final int numberOfChapter;
+
+    private Book book = null;
+
+    public Chapter(String title, int chap, Book b, int hp, int np) {
+        super(String.format("Cap. %02d -", chap), title, hp, np);
+        numberOfChapter = chap;
+        book = b;
+    }
+
+    public Chapter(String title, Book b, int np) {
+        this(title, 1, b, 1, np);
     }
 }
