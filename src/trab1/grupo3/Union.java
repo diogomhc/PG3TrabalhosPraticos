@@ -35,24 +35,42 @@ public class Union extends State implements Composition {
     public State find(Predicate<State> pred) {
         if (pred.test(this)) return this;
 
-        for(State s: states)
-            if (pred.test(s))
-                return s;
+        for(State state: states) {
+            if (state instanceof Union)
+                for (State unionState: (Union)state)
+                    if (pred.test(unionState))
+                        return unionState;
+
+            if (pred.test(state))
+                return state;
+        }
 
         return null;
     }
 
     public Composition append(State s) throws StateException {
         State found = find( i -> i.name.equals(s.name) );
-        if (found == null || !found.equals(s)) states.add(s);
+        if (found == null) states.add(s);
         return this;
     }
 
     public String getDescription(String prefix) {
         StringBuilder res = new StringBuilder(prefix + name + " - " + type);
         for (State s: states) {
-            res.append('\n' + prefix + s.getDescription("\t"));
+            res.append('\n').append(prefix).append(s.getDescription("  "));
         }
         return res.toString();
+    }
+
+    public int size() {
+        return states.size();
+    }
+
+    public State getFirst() {
+        return states.isEmpty() ? null : states.get(0);
+    }
+
+    public State getLast() {
+        return states.isEmpty() ? null : states.get(size() - 1);
     }
 }

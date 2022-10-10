@@ -3,6 +3,10 @@ package trab1.grupo3;
 import java.util.function.Predicate;
 
 public interface Composition extends Iterable<State> {
-    public State find(Predicate<State> pred);
-    public Composition append(State s) throws StateException;
+    State find(Predicate<State> pred);
+    Composition append(State s) throws StateException;
+
+    int size();
+    State getFirst();
+    State getLast();
 }

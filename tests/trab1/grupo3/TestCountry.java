@@ -46,7 +46,7 @@ public class TestCountry {
                 return state.name.equals("Portugal");
             }
         };
-        assertSame( pt, pt.find( predPt ));
+        assertSame( pt, pt.find( predPt));
         Predicate<State> predSovereign = new Predicate<State>() {
             @Override
             public boolean test(State state) {

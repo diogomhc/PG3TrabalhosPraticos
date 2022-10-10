@@ -31,8 +31,8 @@ public class TestUnion {
 
         onu.append( pt );
         assertEquals(1, onu.size());
-        assertSame(pt, onu.first());
-        assertSame(pt, onu.last());
+        assertSame(pt, onu.getFirst());
+        assertSame(pt, onu.getLast());
         assertEquals(pt.getArea(), onu.getArea());
    }
 
@@ -45,8 +45,8 @@ public class TestUnion {
         onu.append( pt ).append( f);
         assertEquals(2, onu.size());
         assertEquals(pt.getArea()+ f.getArea(), onu.getArea());
-        assertSame(pt, onu.first());
-        assertSame(f, onu.last());
+        assertSame(pt, onu.getFirst());
+        assertSame(f, onu.getLast());
         int i= 0;
         for( State s : onu )
             assertSame(states[i++], s);
@@ -54,8 +54,8 @@ public class TestUnion {
         onu.append( pt );
         assertEquals(2, onu.size());
         assertEquals(pt.getArea()+ f.getArea(), onu.getArea());
-        assertSame(pt, onu.first());
-        assertSame(f, onu.last());
+        assertSame(pt, onu.getFirst());
+        assertSame(f, onu.getLast());
     }
 
     @Test

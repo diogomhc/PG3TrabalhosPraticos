@@ -33,9 +33,9 @@ public class TestFederation {
         usa.append( g ).append(fl.name,fl.getArea());
         assertEquals(2, usa.size());
         assertEquals(g.getArea()+ fl.getArea(), usa.getArea());
-        assertSame(g, usa.first());
-        assertEquals(fl.name, usa.greaterState().last().name);
-        assertFalse( usa.last().isSovereign() );
+        assertSame(g, usa.getFirst());
+        assertEquals(fl.name, usa.getLast().name);
+        assertFalse( usa.getLast().isSovereign() );
 
         usa.append( fl );
         assertEquals(2, usa.size());
@@ -79,5 +79,13 @@ public class TestFederation {
         assertSame(fr, onu.find(s-> s.getArea() == fr.getArea()));
         assertSame(g, onu.find(s-> s.name.equals(g.name)));
         assertNull( onu.find(s-> s.getArea() == 0) );
+    }
+
+    @Test
+    public void testAppendException() {
+        Federation usa = new Federation("Estados Unidos");
+        StateException ex= assertThrows(StateException.class, () -> usa.append( pt ));
+        assertEquals("Portugal - Estado inválido", ex.getMessage());
+        assertEquals(pt, ex.getState());
     }
 }

@@ -2,7 +2,7 @@ package trab1.grupo3;
 
 public class Federation extends Union {
     public Federation(String nm) {
-        super(nm, "Estado federal"); // ??????
+        super(nm, "Estado federal");
     }
 
     public boolean isSovereign() {
