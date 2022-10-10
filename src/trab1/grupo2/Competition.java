@@ -1,5 +1,7 @@
 package trab1.grupo2;
 
+import java.util.Locale;
+
 public abstract class Competition {
     protected final double time;
 
@@ -16,7 +18,7 @@ public abstract class Competition {
     public abstract Athlete getAthlete();
 
     public String toString() {
-        return String.format("%s: %s - %.2f", getModality(), getAthlete(), getTime());
+        return String.format(Locale.US, "%s: %s - %.2f", getModality(), getAthlete(), getTime());
     }
 
     public static double sumTimes(Competition... c) {

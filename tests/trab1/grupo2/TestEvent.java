@@ -2,6 +2,8 @@ package trab1.grupo2;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Locale;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestEvent {
@@ -18,7 +20,7 @@ public class TestEvent {
     public void testToString()  {
         Athlete a = new AthleteTest("Diogo Ribeiro");
         Event e = new Event( a,"50 metros mariposa", 22.96);
-        assertEquals( "50 metros mariposa: Diogo Ribeiro - 22,96", e.toString());
+        assertEquals( "50 metros mariposa: Diogo Ribeiro - 22.96", e.toString());
     }
 
     @Test

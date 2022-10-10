@@ -1,6 +1,7 @@
 package trab1.grupo2;
 
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.events.EventException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,9 +31,59 @@ public class TestTriathlon {
                 new Event(a,"natacao", times[2]),
                 new Event(a,"ciclismo", times[1]),
                 new Event(a,"corrida",times[0] ));
-        assertEquals( "Triatlo: Arnaldo Abrantes - 103,37\n" +
-                      "\t- natacao: Arnaldo Abrantes - 31,09\n" +
-                      "\t- ciclismo: Arnaldo Abrantes - 55,04\n" +
-                      "\t- corrida: Arnaldo Abrantes - 17,24", t.toString());
+        assertEquals( "Triatlo: Arnaldo Abrantes - 103.37\n" +
+                      "\t- natacao: Arnaldo Abrantes - 31.09\n" +
+                      "\t- ciclismo: Arnaldo Abrantes - 55.04\n" +
+                      "\t- corrida: Arnaldo Abrantes - 17.24", t.toString());
     }
+
+    @Test
+    public void testLessOfThree(){
+        String expected = "Triatlo: Número de competições inválido";
+        CompetitionException ev;
+        ev = assertThrows(CompetitionException.class, () -> new Triathlon() );
+        assertEquals(expected, ev.getMessage());
+
+        ev = assertThrows(CompetitionException.class, () -> new Triathlon(new Event[2]) );
+        assertEquals(expected, ev.getMessage());
+    }
+
+    @Test
+    public void testModalities(){
+        String expected = "Triatlo: Modalidades inválidas";
+        Athlete a = new AthleteTest("Arnaldo Abrantes");
+        Event e1 =new Event(a,"natacao", 17.24),
+                e2 =   new Event(a,"ciclismo", 55.04),
+                e3 =   new Event(a,"corrida", 31.09 );
+        CompetitionException ev;
+        ev = assertThrows(CompetitionException.class, () -> new Triathlon(e1, e1, e2) );
+        assertEquals(expected, ev.getMessage());
+
+        ev = assertThrows(CompetitionException.class, () -> new Triathlon(e1, e2, e1) );
+        assertEquals(expected, ev.getMessage());
+
+        ev = assertThrows(CompetitionException.class, () -> new Triathlon(e1, e2, e2) );
+        assertEquals(expected, ev.getMessage());
+
+    }
+
+    @Test
+    public void testAthlete(){
+        String expected = "Triatlo: Atleta inválido";
+        Athlete a = new AthleteTest("Arnaldo Abrantes");
+        Event e1 = new Event(new AthleteTest("João"),"natacao", 17.24),
+              e2 = new Event(a,"ciclismo", 55.04),
+              e3 = new Event(a,"corrida", 31.09 );
+        CompetitionException ev;
+        ev = assertThrows(CompetitionException.class, () -> new Triathlon(e1, e2, e3) );
+        assertEquals(expected, ev.getMessage());
+
+        ev = assertThrows(CompetitionException.class, () -> new Triathlon(e2, e3, e1) );
+        assertEquals(expected, ev.getMessage());
+
+        ev = assertThrows(CompetitionException.class, () -> new Triathlon(e3, e1, e2) );
+        assertEquals(expected, ev.getMessage());
+
+    }
+
 }

@@ -21,6 +21,6 @@ public class TestPenalty {
         Athlete a = new AthleteTest("Arnaldo Abrantes");
         Event e = new Event(a,"corrida: 100 metros", 10.53);
         Penalty pe = new Penalty( e, 0.20);
-        assertEquals( "corrida: 100 metros: Arnaldo Abrantes - 10,73 [10,53 + 0,20]", pe.toString());
+        assertEquals( "corrida: 100 metros: Arnaldo Abrantes - 10.73 [10.53 + 0.20]", pe.toString());
     }
 }

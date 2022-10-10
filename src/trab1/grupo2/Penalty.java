@@ -1,5 +1,7 @@
 package trab1.grupo2;
 
+import java.util.Locale;
+
 public class Penalty extends Competition {
     private final double penalty;
     public final Competition competition;
@@ -19,6 +21,6 @@ public class Penalty extends Competition {
     }
 
     public String toString() {
-        return String.format(super.toString() + " [%.2f + %.2f]", competition.getTime(), penalty);
+        return String.format(Locale.US, super.toString() + " [%.2f + %.2f]", competition.getTime(), penalty);
     }
 }
