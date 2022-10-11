@@ -3,6 +3,8 @@ package trab1.grupo4;
 public class Article extends Content {
     private final Publication publication;
 
+    public Journal[] journals;
+
     private final String authors;
 
     public Article(String authors, String title, Publication p, int hp, int np) throws Exception {
