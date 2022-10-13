@@ -19,7 +19,9 @@ public class Federation extends Union {
         try {
             append(new Country(stName, area, false));
         }
-        catch (StateException se) { }
+        catch (StateException se) {
+            throw new RuntimeException();
+        }
         return this;
     }
 
