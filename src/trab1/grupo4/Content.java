@@ -6,7 +6,7 @@ public abstract class Content extends Publication {
     protected Content(String prefix, String title, int hp, int np) {
         super(prefix, title);
         homePage = hp;
-        numberOfPages = hp - np + 1;
+        numberOfPages = np - hp + 1;
     }
 
     public final int getNumberOfPages() {

@@ -10,7 +10,7 @@ public abstract class Publication {
 
     public abstract int getNumberOfPages();
 
-    public String getTitle() {
+    public final String getTitle() {
         return title;
     }
 

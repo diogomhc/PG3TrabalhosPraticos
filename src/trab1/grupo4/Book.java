@@ -10,6 +10,7 @@ public class Book extends Publication implements Composite<Chapter> {
     protected Book(String authors, String title, String isbn) {
         super(authors, title);
         this.isbn = isbn;
+        chapters = new Chapter[0];
     }
 
     public Chapter get(Predicate<Chapter> pred) {
@@ -47,9 +48,9 @@ public class Book extends Publication implements Composite<Chapter> {
     }
 
     public String getDescription() {
-        StringBuilder res = new StringBuilder(toString() + "\nISBN: " + isbn + ", " + getNumberOfPages() + (getNumberOfPages() != 1 ? "pages" : "page"));
+        StringBuilder res = new StringBuilder(toString() + "\nISBN: " + isbn + ", " + getNumberOfPages() + (getNumberOfPages() != 1 ? " pages" : " page"));
         for(Chapter c: chapters) {
-            res.append("\n\t").append(c.toString().substring(0, c.toString().indexOf(" in"))).append(c.pagesToString());
+            res.append("\n\t").append(c.toString()).append(", " + c.pagesToString());
         }
         return res.toString();
     }

@@ -3,17 +3,14 @@ package trab1.grupo4;
 public class Article extends Content {
     private final Publication publication;
 
-    private final String authors;
-
-    public Article(String authors, String title, Publication p, int hp, int np) throws Exception {
-        super(authors, title, hp, validatePageNumbers(hp, np));
-        this.authors = authors;
+    public Article(String authors, String title, Publication p, int hp, int fp) throws PublicationException {
+        super(authors, title, hp, validatePageNumbers(hp, fp));
         publication = p;
     }
 
-    private static int validatePageNumbers(int hp, int np) throws Exception {
-        if (hp + np - 1 <= 0) throw new Exception();
-        return hp + np - 1;
+    private static int validatePageNumbers(int hp, int fp) throws PublicationException {
+        if (fp < hp) throw new PublicationException();
+        return fp - hp + 1;
     }
 
     public Publication getPublication() {

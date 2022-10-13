@@ -9,7 +9,6 @@ public class Chapter extends Content {
     public Chapter(String title, int chap, Book b, int hp, int np) {
         super(String.format("Cap. %02d -", chap), title, hp, np);
         numberOfChapter = chap;
-        book = b;
     }
 
     public Chapter(String title, Book b, int np) {
