@@ -21,5 +21,4 @@ public class Article extends Content {
     public String toString() {
         return super.toString() + ", " + getPublication().getTitle() + ", " + pagesToString();
     }
-    // INACABADO
 }

@@ -29,7 +29,9 @@ public class Book extends Publication implements Composite<Chapter> {
         throw new UnsupportedOperationException();
     }
 
-    public Book append(String chapterTitle, int pages) {
+    public Book append(String chapterTitle, int pages) throws PublicationException {
+        if (get(c -> c.getTitle().equalsIgnoreCase(chapterTitle)) != null) throw new PublicationException("Invalid chapter");
+
         Chapter[] temp = new Chapter[chapters.length + 1];
         System.arraycopy(chapters, 0, temp, 0, chapters.length);
         temp[chapters.length] = new Chapter(chapterTitle, this, pages);
@@ -48,7 +50,7 @@ public class Book extends Publication implements Composite<Chapter> {
     }
 
     public String getDescription() {
-        StringBuilder res = new StringBuilder(toString() + "\nISBN: " + isbn + ", " + getNumberOfPages() + (getNumberOfPages() != 1 ? " pages" : " page"));
+        StringBuilder res = new StringBuilder(toString() + "\nISBN:" + isbn + ", " + getNumberOfPages() + (getNumberOfPages() != 1 ? " pages" : " page"));
         for(Chapter c: chapters) {
             res.append("\n\t").append(c.toString()).append(", " + c.pagesToString());
         }
