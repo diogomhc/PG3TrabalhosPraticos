@@ -4,25 +4,31 @@ import java.util.*;
 import java.util.function.Predicate;
 
 public class Book extends Publication implements Composite<Chapter> {
-    private Chapter[] chapters;
+    private final ArrayList<Chapter> chapters;
     private final String isbn;
 
     protected Book(String authors, String title, String isbn) {
         super(authors, title);
         this.isbn = isbn;
-        chapters = new Chapter[0];
+        chapters = new ArrayList<>();
     }
 
     public Chapter get(Predicate<Chapter> pred) {
+        Chapter temp = null;
+
         for (Chapter c: chapters)
             if (pred.test(c))
-                return c;
+                temp = c;
 
-        return null;
+        return temp;
     }
 
     public List<Chapter> getAll() {
-        return Arrays.stream(chapters).toList();
+        ArrayList<Chapter> temp = chapters;
+
+        temp.sort((prev, next) -> prev.getTitle().compareToIgnoreCase(next.getTitle()));
+
+        return temp;
     }
 
     public Composite<Chapter> append(Chapter chapter) {
@@ -32,10 +38,12 @@ public class Book extends Publication implements Composite<Chapter> {
     public Book append(String chapterTitle, int pages) throws PublicationException {
         if (get(c -> c.getTitle().equalsIgnoreCase(chapterTitle)) != null) throw new PublicationException("Invalid chapter");
 
-        Chapter[] temp = new Chapter[chapters.length + 1];
+        /*Chapter[] temp = new Chapter[chapters.length + 1];
         System.arraycopy(chapters, 0, temp, 0, chapters.length);
-        temp[chapters.length] = new Chapter(chapterTitle, this, pages);
-        chapters = temp;
+        temp[chapters.length] = new Chapter(chapterTitle, chapters.length + 1, this, chapters.length == 0 ? 1 : chapters[chapters.length - 1].getFinalPage() + 1, pages);
+        chapters = temp;*/
+
+        chapters.add(new Chapter(chapterTitle, chapters.size() + 1, this, chapters.size() == 0 ? 1 : chapters.get(chapters.size() - 1).getFinalPage() + 1, pages));
 
         return this;
     }
@@ -50,7 +58,8 @@ public class Book extends Publication implements Composite<Chapter> {
     }
 
     public String getDescription() {
-        StringBuilder res = new StringBuilder(toString() + "\nISBN:" + isbn + ", " + getNumberOfPages() + (getNumberOfPages() != 1 ? " pages" : " page"));
+        StringBuilder res = new StringBuilder(toString() + "\nISBN:" + isbn);
+        if (getNumberOfPages() > 0) res.append(", " + getNumberOfPages() + (getNumberOfPages() > 1 ? " pages" : " page"));
         for(Chapter c: chapters) {
             res.append("\n\t").append(c.toString()).append(", " + c.pagesToString());
         }
