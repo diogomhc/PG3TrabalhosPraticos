@@ -38,11 +38,6 @@ public class Book extends Publication implements Composite<Chapter> {
     public Book append(String chapterTitle, int pages) throws PublicationException {
         if (get(c -> c.getTitle().equalsIgnoreCase(chapterTitle)) != null) throw new PublicationException("Invalid chapter");
 
-        /*Chapter[] temp = new Chapter[chapters.length + 1];
-        System.arraycopy(chapters, 0, temp, 0, chapters.length);
-        temp[chapters.length] = new Chapter(chapterTitle, chapters.length + 1, this, chapters.length == 0 ? 1 : chapters[chapters.length - 1].getFinalPage() + 1, pages);
-        chapters = temp;*/
-
         chapters.add(new Chapter(chapterTitle, chapters.size() + 1, this, chapters.size() == 0 ? 1 : chapters.get(chapters.size() - 1).getFinalPage() + 1, pages));
 
         return this;
