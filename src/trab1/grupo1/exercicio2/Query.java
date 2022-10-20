@@ -1,6 +1,5 @@
 package trab1.grupo1.exercicio2;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Query {
@@ -62,7 +61,7 @@ public class Query {
 
     // Alínea 7
     public static int quiz(Query... queries) {
-        int sum = 0, queryPoints = 0;
+        int sum = 0, queryPoints;
         Scanner in = new Scanner(System.in);
         for (Query q: queries) {
             System.out.println(q.getText() + '?');
@@ -76,16 +75,19 @@ public class Query {
     }
 
     public static Query[] growingQueries(Query[] queries) {
-        ArrayList<Query> temp = new ArrayList<>();
-        for (int i = 0; i < queries.length; i++) {
-            if (i == 0) {
-                temp.add(queries[0]);
-                continue;
-            }
-            if (queries[i].compareTo(temp.get(temp.size() - 1)) >= 0) temp.add(queries[i]);
-        }
+        Query[] temp = new Query[queries.length], result;
+        int last = 1;
 
-        return temp.toArray(new Query[temp.size()]);
+        temp[0] = queries[0];
+
+        for (int i = 1; i < queries.length; i++)
+            if (queries[i].compareTo(temp[last - 1]) >= 0)
+                temp[last++] = queries[i];
+
+        result = new Query[last];
+        System.arraycopy(temp, 0, result, 0, last);
+
+        return result;
     }
 
 // Fim do Exercício 2
@@ -95,8 +97,8 @@ public class Query {
     }
 
     public boolean equals(Object o) {
-        return o instanceof Query &&
-               (this == o ||
+        return this == o ||
+               (o instanceof Query &&
                (text.equals(((Query)o).text) &&
                correctAnswer.equals(((Query)o).correctAnswer) &&
                points == ((Query)o).points));
