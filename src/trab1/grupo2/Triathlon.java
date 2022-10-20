@@ -39,7 +39,7 @@ public class Triathlon extends Competition {
     }
 
     public String toString() {
-        StringBuilder res = new StringBuilder(String.format(Locale.US, "Triatlo: %s - %.2f", getAthlete(), sumTimes(competitions)));
+        StringBuilder res = new StringBuilder(super.toString());
         for (Competition c: competitions) {
             res.append("\n\t- " + c);
         }
