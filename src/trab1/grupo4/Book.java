@@ -24,7 +24,7 @@ public class Book extends Publication implements Composite<Chapter> {
     }
 
     public List<Chapter> getAll() {
-        ArrayList<Chapter> temp = chapters;
+        ArrayList<Chapter> temp = new ArrayList<>(chapters);
 
         temp.sort((prev, next) -> prev.getTitle().compareToIgnoreCase(next.getTitle()));
 
