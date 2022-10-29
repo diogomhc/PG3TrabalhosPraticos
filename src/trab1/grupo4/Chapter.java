@@ -4,7 +4,7 @@ public class Chapter extends Content {
 
     public final int numberOfChapter;
 
-    private Book book;
+    private final Book book;
 
     public Chapter(String title, int chap, Book b, int hp, int np) {
         super(String.format("Cap. %02d -", chap), title, hp, np);

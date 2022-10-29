@@ -1,7 +1,5 @@
 package trab1.grupo2;
 
-import java.util.Locale;
-
 public class Triathlon extends Competition {
     protected final Competition[] competitions;
 
@@ -10,7 +8,7 @@ public class Triathlon extends Competition {
         competitions = c;
     }
 
-    private static double getCompetitionsTime(Competition...c) throws CompetitionException {
+    private static double getCompetitionsTime(Competition... c) throws CompetitionException {
         if (c.length != 3)
             throw new CompetitionException("Triatlo: Número de competições inválido");
         for (int i = 1; i < 3; i++) {

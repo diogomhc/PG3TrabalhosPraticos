@@ -1,6 +1,5 @@
 package trab1.grupo3;
 
-import java.util.Comparator;
 import java.util.function.Predicate;
 
 public abstract class State implements Comparable<State> {
