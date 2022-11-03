@@ -1,6 +1,7 @@
 package trab1.grupo4;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class Book extends Publication implements Composite<Chapter> {
@@ -53,7 +54,7 @@ public class Book extends Publication implements Composite<Chapter> {
     }
 
     public String getDescription() {
-        StringBuilder res = new StringBuilder(toString() + "\nISBN:" + isbn);
+        StringBuilder res = new StringBuilder(this + "\nISBN:" + isbn);
         if (getNumberOfPages() > 0) res.append(", " + getNumberOfPages() + (getNumberOfPages() > 1 ? " pages" : " page"));
         for(Chapter c: chapters) {
             res.append("\n\t").append(c.toString()).append(", " + c.pagesToString());
