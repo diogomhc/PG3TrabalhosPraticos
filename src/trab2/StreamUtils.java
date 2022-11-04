@@ -1,7 +1,6 @@
 package trab2;
 
 import java.io.*;
-import java.util.Objects;
 import java.util.function.*;
 
 public class StreamUtils {
@@ -61,22 +60,19 @@ public class StreamUtils {
             return null;
         }
         return res;
-
-        /*if ((index = expression.indexOf(" ")) != -1) {
-            try {
-                return Integer.parseInt(expression);
-            }
-            catch (Exception e) {
-                return null;
-            }
-        }
-
-        res = Integer.parseInt(expression.substring(0, index));
-
-
-        return res;*/
     }
 
+    public static void evaluate(String filenameIn, BiConsumer<String,Integer> action) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(filenameIn));
+
+        mapper(br, StreamUtils::evaluate, action);
+
+        br.close();
+    }
+
+    public static void copyEvaluate(String filenameIn, String filenameOut) throws IOException {
+        // TODO
+    }
 
     public static void main(String[] args) throws IOException {
         //System.out.println("Escreva texto: ");
