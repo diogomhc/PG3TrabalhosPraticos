@@ -1,4 +1,4 @@
-package trab2;
+package trab2.grupo1;
 
 import java.io.*;
 import java.util.function.*;
@@ -29,16 +29,14 @@ public class StreamUtils {
         }
     }
 
-    public static <T> void mapper( BufferedReader in,
-                     Function<String, T> mapping,
-                     BiConsumer<String, T> action ) throws IOException {
+    public static <T> void mapper( BufferedReader in, Function<String, T> mapping, BiConsumer<String, T> action ) throws IOException {
         String s;
         while ((s = in.readLine()) != null)
             action.accept(s, mapping.apply(s));
     }
 
     public static Integer evaluate(String expression) {
-        if (!expression.endsWith("=")) return null;
+        if (!expression.endsWith("=") || expression.length() % 2 == 1) return null;
 
         int res = 0;
         try {
@@ -63,21 +61,35 @@ public class StreamUtils {
     }
 
     public static void evaluate(String filenameIn, BiConsumer<String,Integer> action) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(filenameIn));
-
-        mapper(br, StreamUtils::evaluate, action);
-
-        br.close();
+        try (BufferedReader br = new BufferedReader(new FileReader(filenameIn))) {
+            mapper(br, StreamUtils::evaluate, action);
+        }
     }
 
     public static void copyEvaluate(String filenameIn, String filenameOut) throws IOException {
-        // TODO
+        try (PrintWriter pw = new PrintWriter(filenameOut)) {
+            evaluate(filenameIn, (s, i) -> pw.println(s + (i == null ? " ERROR" : i)));
+        }
     }
 
-    public static void main(String[] args) throws IOException {
-        //System.out.println("Escreva texto: ");
-        //System.out.println(validate(new InputStreamReader(System.in)) +"\n\n\n");
-        //copyCom(new BufferedReader(new StringReader("// um comentario\n System.out.println(); // outro comentario\n\n\n /* terceiro\n\ncomentario*/ \n // comentario extra")), new PrintWriter(System.out, true));
-        System.out.println(evaluate("6+5="));
+    public static void copyEvaluate(BufferedReader in, Writer out) throws IOException {
+        mapper(in, StreamUtils::evaluate, (s, i) -> {
+            try {
+                out.write(s + (i == null ? " ERROR" : i));
+            }
+            catch (IOException ioe) {
+                throw new RuntimeException(ioe.getMessage());
+            }
+        });
+    }
+
+    public static String stringEvaluate( String expression ) {
+        StringWriter sw = new StringWriter();
+        try {
+            copyEvaluate(new BufferedReader(new StringReader(expression)), sw);
+            return sw.toString();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
