@@ -1,32 +1,69 @@
 package trab2.grupo1;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.function.*;
 
 public class StreamUtils {
 
     public static boolean validate( Reader in ) throws IOException {
-        int counter = 0, c;
-        while ((c = in.read()) != -1) {
-            if (c == '{') counter++;
-            else if ((char)c == '}') {
-                counter--;
-                if (counter < 0)
-                    return false;
+        int bracketCounter = 0, quoteCounter = 0, index = 0, blockCom = -1, c;
+        char[] buffer = new char[512];
+        while ((c = in.read(buffer)) != -1) {
+            if (blockCom == -1) blockCom = Arrays.toString(buffer).indexOf("/*");
+
+            for (int i = 0; i < c; i++) {
+
+                if (blockCom > -1) {
+                    if (!Arrays.toString(buffer).contains("*/")) break;
+                    else {
+                        i = Arrays.toString(buffer).indexOf("*/") + 1;
+                        blockCom = -1;
+                        continue;
+                    }
+                }
+
+                if (Arrays.toString(buffer).contains("//")) break;
+
+                if (buffer[i] == '"' && (i == 0 || buffer[i - 1] != '\\')) quoteCounter++;
+
+                if (quoteCounter == 0) {
+                    if (buffer[i] == '{') bracketCounter++;
+                    else if (buffer[i] == '}') {
+                        bracketCounter--;
+                        if (bracketCounter < 0)
+                            return false;
+                    }
+                }
             }
         }
-        return counter == 0;
+        return bracketCounter == 0;
     }
 
     public static void copyCom( BufferedReader in, PrintWriter out ) throws IOException {
+        int index = 0, line = 1;
+        boolean blockCom = false;
         String s;
-        int line = 1, index;
         while ((s = in.readLine()) != null) {
-            if ((index = s.indexOf("//")) != -1)
-                out.println(line + " " + s.substring(index));
+            if (!blockCom) blockCom = s.contains("/*");
+
+            if ((index = s.lastIndexOf("//")) != -1) {
+                String temp = s.substring(0, index).trim();
+                int quoteCounter = 0;
+                for (int i = 0; i < temp.length(); i++)
+                    if (temp.charAt(i) == '"') quoteCounter++;
+
+                if (quoteCounter % 2 == 1) {
+                    line++;
+                    continue;
+                }
+
+                out.write(line + " " + s.substring(index).trim() + "\n");
+            }
 
             line++;
         }
+        out.flush();
     }
 
     public static <T> void mapper( BufferedReader in, Function<String, T> mapping, BiConsumer<String, T> action ) throws IOException {
@@ -75,7 +112,7 @@ public class StreamUtils {
     public static void copyEvaluate(BufferedReader in, Writer out) throws IOException {
         mapper(in, StreamUtils::evaluate, (s, i) -> {
             try {
-                out.write(s + (i == null ? " ERROR" : i));
+                out.write(s + (i == null ? " ERROR" : i) + "");
             }
             catch (IOException ioe) {
                 throw new RuntimeException(ioe.getMessage());
