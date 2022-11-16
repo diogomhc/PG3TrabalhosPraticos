@@ -3,7 +3,6 @@ package trab2.grupo1;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.util.function.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static trab2.grupo1.StreamUtils.*;
