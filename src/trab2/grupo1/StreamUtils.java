@@ -112,10 +112,10 @@ public class StreamUtils {
     public static void copyEvaluate(BufferedReader in, Writer out) throws IOException {
         mapper(in, StreamUtils::evaluate, (s, i) -> {
             try {
-                out.write(s + (i == null ? " ERROR" : i) + "");
+                out.write(s + (i == null ? " ERROR" : i) + "\n");
             }
             catch (IOException ioe) {
-                throw new RuntimeException(ioe.getMessage());
+                throw new RuntimeException(ioe);
             }
         });
     }
