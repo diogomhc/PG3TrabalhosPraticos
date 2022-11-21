@@ -2,8 +2,11 @@ package trab2.grupo2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class AlgorithmUtils {
@@ -53,6 +56,15 @@ public class AlgorithmUtils {
     }
 
     public static <K,V,C extends Collection<V>> void addAll(BufferedReader in, Map<K,C> m, Function<String, V> getValue, Function<V, K> getKey, Supplier<C> supC)  throws IOException {
+        String s;
+        while((s = in.readLine()) != null) {
+            V v = getValue.apply(s);
+            K k = getKey.apply(v);
+            if(m.get(k) == null) {
+            }
+        }
+    }
 
+    public static <K,V,C extends Collection<V>> void forEachIf(Map<K,C> m, Predicate<K> pred, Consumer<V> action) {
     }
 }
